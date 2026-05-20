@@ -1,4 +1,4 @@
-## Escáner de Red Automático
+## Ejercicio 2 - Escáner de Red Automático
 
 Herramienta interna diseñada en Python para la fase de auditoría técnica que descubre dinámicamente qué hosts se encuentran levantados y operativos dentro de la LAN de la organización sin necesidad de configurar parámetros de forma manual.
 
