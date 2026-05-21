@@ -44,3 +44,35 @@ Total de dispositivos activos detectados: 3
    - 192.168.1.15 (Tiempo de respuesta: 0.0 ms)
    - 192.168.1.34 (Tiempo de respuesta: 45.12 ms)
 ==================================================
+
+### Cómo funciona (paso a paso)
+
+El escáner realiza las siguientes acciones para descubrir dispositivos en la LAN y medir su latencia:
+
+1. Detecta la IP local del equipo ejecutando `obtener_ip_local()`.
+   - Crea un socket UDP y se conecta de forma no intrusiva a un servidor público (8.8.8.8) para obtener la IP asociada a la interfaz activa.
+   - Si falla, utiliza la resolución por nombre de host como método alternativo.
+
+2. Determina el segmento de red con `obtener_segmento_red(ip)`.
+   - Se construye el prefijo de red (por ejemplo `192.168.1`) a partir de la IP local para escanear de `.1` a `.254`.
+
+3. Para cada dirección IP del rango objetivo ejecuta `comprobar_ping_con_latencia(ip)`.
+   - Lanza un único ping adaptando las opciones según el sistema operativo (Windows/Linux/MacOS).
+   - Mide el tiempo transcurrido alrededor de la llamada al comando para calcular la latencia en milisegundos.
+   - Interpreta el código de salida del comando para decidir si el host está activo.
+
+4. Si un host responde, intenta resolver su nombre de equipo con `obtener_hostname(ip)` (resolución DNS inversa).
+
+5. Presenta salida por pantalla en tiempo real mostrando IPs activas, hostname y latencia.
+   - Para hosts inactivos muestra puntos (`.`) que simulan una barra de progreso.
+
+6. Guarda un informe final en `dispositivos_activos.txt` con una tabla que incluye IP, hostname y latencia.
+
+7. Permite interrupción manual con `Ctrl+C` para detener el escaneo en cualquier momento.
+
+Con este flujo el script ofrece una visión rápida y reproducible de qué equipos están operativos en la subred local y cuál es su tiempo de respuesta.
+
+## Archivos principales de proyecto
+
+- [main.py]: Lógica del programa.
+- [README.md]: Documentación del proyecto (este archivo).
