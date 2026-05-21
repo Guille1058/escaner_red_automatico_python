@@ -15,10 +15,33 @@ Herramienta interna diseñada en Python para la fase de auditoría técnica que 
 * **Persistencia en archivo**: Exportación automática de la lista estructurada de IPs junto a sus respectivas latencias a un documento de texto plano (`dispositivos_activos.txt`).
 
 ### Instrucciones de Ejecución
-Asegúrate de ejecutar la consola con privilegios de administrador si tu sistema operativo lo requiere para el envío de paquetes ICMP raw.
+
+1. Abre una terminal o consola en la carpeta del proyecto.
+
+2. Verifica que tienes Python 3 instalado:
 
 ```bash
-python escaner_red.py
+python --version
+```
+
+3. Ejecuta el script con Python 3. Si tu sistema usa `python3`, utilízalo en lugar de `python`.
+
+```bash
+python main.py
+```
+
+4. Si necesitas permisos de administrador para enviar paquetes ICMP raw, abre la terminal con dichos permisos antes de ejecutar el script.
+
+- En Linux/macOS: usa `sudo` o abre la terminal como usuario con permisos suficientes.
+- En Windows: abre CMD o PowerShell como administrador.
+
+5. Durante el escaneo verás una salida en pantalla con:
+- IP local detectada.
+- Segmento de red escaneado.
+- Lista de hosts activos y su latencia.
+- Resumen final con el total de dispositivos encontrados.
+
+6. Al finalizar, el informe también se guarda automáticamente en `dispositivos_activos.txt`.
 
 ### Ejemplo de Salida Esperada con Latencia
 ```text
