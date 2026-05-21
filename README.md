@@ -10,14 +10,15 @@ Herramienta interna diseñada en Python para la fase de auditoría técnica que 
 * **`sys`**: Proporciona funciones y variables del intérprete de Python (usado aquí para limpiar el buffer de pantalla y generar la barra de progreso).
 * **`time`**: Permite realizar mediciones de tiempo (importante para calcular la latencia en milisegundos).
 
-### Instrucciones de Ejecución
-Asegúrate de ejecutar la consola con privilegios de administrador si tu sistema operativo lo requiere para el envío de paquetes ICMP raw.
-```bash
-python escaner_red.py
-
 ### Características Avanzadas Implementadas (Extra)
 * **Medición de Latencia Activa**: El script calcula en tiempo real el tiempo de respuesta (en milisegundos) de cada host mediante marcas temporales de la librería nativa `time`, ofreciendo visibilidad sobre la congestión o la velocidad de respuesta de cada nodo de la infraestructura.
 * **Persistencia en archivo**: Exportación automática de la lista estructurada de IPs junto a sus respectivas latencias a un documento de texto plano (`dispositivos_activos.txt`).
+
+### Instrucciones de Ejecución
+Asegúrate de ejecutar la consola con privilegios de administrador si tu sistema operativo lo requiere para el envío de paquetes ICMP raw.
+
+```bash
+python escaner_red.py
 
 ### Ejemplo de Salida Esperada con Latencia
 ```text
@@ -44,6 +45,7 @@ Total de dispositivos activos detectados: 3
    - 192.168.1.15 (Tiempo de respuesta: 0.0 ms)
    - 192.168.1.34 (Tiempo de respuesta: 45.12 ms)
 ==================================================
+```
 
 ### Cómo funciona (paso a paso)
 
